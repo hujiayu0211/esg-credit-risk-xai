@@ -165,4 +165,4 @@ esg-credit-risk-xai/
 
 ## License
 
-MIT
+Code in this repository is released under the **MIT License** (see `LICENSE`). The underlying **CSMAR and Huazheng ESG data are proprietary/licensed**, are **not** covered by that license, and are **not** redistributed here; users must obtain them from the providers and observe the providers' terms of use. This repository contains analysis code, variable definitions, derived result summaries, and documentation only. The only dataset included is a fully synthetic sample that contains no real firm data.
