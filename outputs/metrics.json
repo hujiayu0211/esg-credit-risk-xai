@@ -1,0 +1,18 @@
+{
+  "test": {
+    "rmse": 3.6089456468141488,
+    "mae": 1.9383939410952251,
+    "r2": 0.6830713806259315
+  },
+  "cv_best_rmse": 3.507249388070077,
+  "best_params": {
+    "xgb__n_estimators": 846,
+    "xgb__max_depth": 7,
+    "xgb__learning_rate": 0.04864552224925478,
+    "xgb__subsample": 0.9383274218052201,
+    "xgb__colsample_bytree": 0.8815691984177925,
+    "xgb__min_child_weight": 4,
+    "xgb__reg_alpha": 0.09285723060600715,
+    "xgb__reg_lambda": 1.607014182017445
+  }
+}

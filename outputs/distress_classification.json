@@ -1,0 +1,17 @@
+{
+  "baseline": {
+    "roc_auc": 0.9152,
+    "roc_auc_std": 0.0118,
+    "pr_auc": 0.3535,
+    "n_features": 14
+  },
+  "full": {
+    "roc_auc": 0.923,
+    "roc_auc_std": 0.0117,
+    "pr_auc": 0.361,
+    "n_features": 18
+  },
+  "esg_auc_gain": 0.0078,
+  "positive_rate": 0.0158,
+  "n_obs": 36907
+}

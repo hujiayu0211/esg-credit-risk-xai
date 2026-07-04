@@ -1,0 +1,25 @@
+seed: 42
+
+data:
+  path: data/panel_real.csv
+  winsorize: true
+  synthetic:
+    n_firms: 600
+    n_years: 4
+    seed: 42
+
+split:
+  test_size: 0.2
+
+tuning:
+  n_iter: 28
+  cv: 5
+
+xai:
+  output_dir: figures
+  dependence_features:
+    - esg_score
+    - leverage
+    - roa
+    - interest_coverage
+  instance_ids: [0, 7]

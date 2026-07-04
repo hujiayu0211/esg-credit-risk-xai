@@ -1,0 +1,12 @@
+{
+  "baseline_rmse": 3.8304,
+  "baseline_r2": 0.6372,
+  "full_rmse": 3.7826,
+  "full_r2": 0.6461,
+  "rmse_reduction": 0.0477,
+  "rmse_reduction_pct": 1.246,
+  "paired_t_stat": 6.45,
+  "p_value": 0.003,
+  "n_splits": 5,
+  "evaluation": "firm-grouped GroupKFold (no firm spans train/test)"
+}
