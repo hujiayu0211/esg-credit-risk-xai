@@ -6,7 +6,7 @@ The central research question: *beyond traditional financial and market signals,
 
 ## Data
 
-The panel is assembled from licensed **CSMAR** and **Huazheng ESG** data. Because these sources cannot be redistributed, the raw vendor files are **not** included in this repository. The full ingestion code (`src/ingest/`) and a field-level data dictionary ([`data/README.md`](data/README.md)) let anyone with CSMAR access rebuild the exact panel. A synthetic sample generator (`src/data_generator.py`) is retained so the modelling code can be smoke-tested without the licensed data.
+The panel is assembled from licensed **CSMAR** and **Sino-Securities ESG Rating** data. Because these sources cannot be redistributed, the raw vendor files are **not** included in this repository. The full ingestion code (`src/ingest/`) and a field-level data dictionary ([`data/README.md`](data/README.md)) let anyone with CSMAR access rebuild the exact panel. A synthetic sample generator (`src/data_generator.py`) is retained so the modelling code can be smoke-tested without the licensed data.
 
 Raw sources (standard vendor exports):
 
@@ -18,7 +18,7 @@ Raw sources (standard vendor exports):
 | `LIQ_TOVER_M` monthly turnover | annual turnover rate |
 | `TRD_Dalyr` daily return | annualised volatility |
 | `BDT_FinDistMertonDD` | distance-to-default (KMV / Merton / Bharath-Shumway) + ST/*ST flag |
-| Huazheng ESG | composite + E/S/G pillar scores |
+| Sino-Securities ESG Rating | composite + E/S/G pillar scores |
 
 Sample construction (transparent, reproducible filters in `src/ingest/build_panel.py`): consolidated annual statements only -> drop financial industry -> drop contemporaneous ST/*ST firm-years -> restrict to 2015-2025 -> require a valid distance-to-default. Continuous variables are winsorized at the 1st/99th percentiles.
 
@@ -92,9 +92,9 @@ Leverage and equity volatility dominate the distance-to-default prediction, cons
 ## Quickstart
 
 ```bash
-git clone https://github.com/<user>/esg-credit-risk-xai.git
+git clone https://github.com/hujiayu0211/esg-credit-risk-xai.git
 cd esg-credit-risk-xai
-pip install -r requirements.txt
+pip install -r requirements.txt      # Python 3.9+
 ```
 
 **With real data** (CSMAR access required, see [`data/README.md`](data/README.md)): place the raw exports under `data/raw/`, then
@@ -129,6 +129,14 @@ analyzer.interaction_matrix()                      # layer 3
 analyzer.explain_instance(0)                       # layer 4
 ```
 
+### Tests
+
+A smoke-test suite exercises the pipeline end-to-end on the synthetic sample, so it runs without any licensed data:
+
+```bash
+pytest
+```
+
 ## Repository structure
 
 ```
@@ -153,6 +161,8 @@ esg-credit-risk-xai/
     sample_synthetic.csv        # generated on demand
   figures/                      # SHAP outputs
   outputs/                      # metrics.json, ablation.json, robustness.json, ...
+  tests/
+    test_pipeline.py            # end-to-end smoke test on synthetic data
 ```
 
 ## Design notes
@@ -163,6 +173,10 @@ esg-credit-risk-xai/
 - **Determinism**: a single seed controls the split, the hyperparameter sampler, and SHAP subsampling.
 - **Scope of the finding**: results apply to non-financial A-share firms with available ESG coverage; the ESG effect is modest in magnitude.
 
+## Author
+
+**Jiayu Hu** — [jiayuhu.com](https://www.jiayuhu.com/) · hujiayu211[at]gmail[dot]com
+
 ## License
 
-Code in this repository is released under the **MIT License** (see `LICENSE`). The underlying **CSMAR and Huazheng ESG data are proprietary/licensed**, are **not** covered by that license, and are **not** redistributed here; users must obtain them from the providers and observe the providers' terms of use. This repository contains analysis code, variable definitions, derived result summaries, and documentation only. The only dataset included is a fully synthetic sample that contains no real firm data.
+Code in this repository is released under the **MIT License** (see `LICENSE`). The underlying **CSMAR and Sino-Securities ESG Rating data are proprietary/licensed**, are **not** covered by that license, and are **not** redistributed here; users must obtain them from the providers and observe the providers' terms of use. This repository contains analysis code, variable definitions, derived result summaries, and documentation only. The only dataset included is a fully synthetic sample that contains no real firm data.
